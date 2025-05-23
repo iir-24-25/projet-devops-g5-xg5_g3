@@ -17,7 +17,9 @@ const QuizApp = () => {
   const [currentUser, setCurrentUser] = useState(null); // Utilisateur connecté
 
   // États principaux
-  const [quizzes, setQuizzes] = useState([]);
+  const [, setQuizzes] = useState([]);
+
+  //const [quizzes, setQuizzes] = useState([]);
   const [categories, setCategories] = useState([]);
   const [questions, setQuestions] = useState([]);
   const [currentQuizId, setCurrentQuizId] = useState(null);

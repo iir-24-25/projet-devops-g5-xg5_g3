@@ -13,7 +13,7 @@ function Dashboard() {
   const [activeUsers, setActiveUsers] = useState(0);
   const [currentUser, setCurrentUser] = useState(null);
 
-  const { pathname } = useLocation();
+  //const { pathname } = useLocation();
 
   // const isActive = (path) => {
   //   return pathname === path;
