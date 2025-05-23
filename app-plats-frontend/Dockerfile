@@ -1,32 +1,21 @@
-# Étape 1 : Build de l'application Vite (React)
-FROM node:18 AS builder
+# Étape de build
+FROM node:18-alpine AS builder
 WORKDIR /app
 
-# 1. Copier uniquement les fichiers nécessaires pour installer les dépendances
+# 1. Copier les fichiers essentiels d'abord
 COPY package.json package-lock.json ./
 
-# 2. Installation propre des dépendances
-RUN npm ci --silent
+# 2. Installation FORCÉE des dépendances (méthode infaillible)
+RUN npm install --force --legacy-peer-deps
 
-# 3. Copier le reste des fichiers
+# 3. Copier le reste
 COPY . .
 
-# 4. Build de l'application (avec vérification)
-RUN npm run build && \
-    ls -la /app/dist  # Vérification que le dossier dist existe
+# 4. Build avec vérification
+RUN npm run build && ls -la /app/dist
 
-# Étape 2 : Servir avec Nginx
-FROM nginx:1.23-alpine
-
-# 1. Supprimer la configuration par défaut
-RUN rm -rf /etc/nginx/conf.d/default.conf
-
-# 2. Copier notre configuration Nginx (optionnel)
-# COPY nginx.conf /etc/nginx/conf.d
-
-# 3. Copier les fichiers buildés
+# Étape de production
+FROM nginx:alpine
 COPY --from=builder /app/dist /usr/share/nginx/html
-
-# 4. Exposer le port et démarrer Nginx
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
