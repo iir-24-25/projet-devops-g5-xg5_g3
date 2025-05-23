@@ -1,13 +1,16 @@
-import './QuizApp.css';
-// ou
-import './QuizCRUD.css'; // selon ce que tu veux vraiment
-// puis les autres imports nécessaires
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { FaEdit, FaTrash } from 'react-icons/fa';
+import './QuizApp.css'; // OU import './QuizCRUD.css' - choisissez un seul fichier CSS
+
+// Firebase
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { adminAuth } from '../firebaseAdmin';
+
+// React Router
 import { Link, useNavigate } from 'react-router-dom';
 
-
-const API_URL = 'http://localhost:9090/api';
+const API_URL = 'http://localhost:9090/api'; // Déclaration de l'URL API
 
 const QuizApp = () => {
   const navigate = useNavigate(); // Pour la navigation
