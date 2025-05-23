@@ -57,6 +57,7 @@ jobs:
 
       - name: Install frontend dependencies
         run: npm install
+          npm install react-router-dom
 
       - name: Run frontend tests
         run: npm test
