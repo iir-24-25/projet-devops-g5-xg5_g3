@@ -1,0 +1,109 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #fff;
+  }
+  
+  .signup-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+  .title {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .signup-box {
+    text-align: center;
+    max-width: 300px;
+    width: 100%;
+  }
+  
+  .signup-box h2 {
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+  
+  .signup-box p {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 16px;
+  }
+  
+  .email-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+  }
+  
+  .email-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #000;
+    color: white;
+    border: none;
+    font-weight: bold;
+    border-radius: 6px;
+    margin-bottom: 16px;
+    cursor: pointer;
+  }
+  
+  .divider {
+    font-size: 12px;
+    color: #888;
+    margin: 10px 0;
+    position: relative;
+  }
+  
+  .divider::before,
+  .divider::after {
+    content: '';
+    height: 1px;
+    width: 40%;
+    background: #ccc;
+    position: absolute;
+    top: 50%;
+  }
+  
+  .divider::before {
+    left: 0;
+  }
+  
+  .divider::after {
+    right: 0;
+  }
+  
+  .google-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #f2f2f2;
+    color: black;
+    font-weight: 500;
+    border: none;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    margin-bottom: 16px;
+  }
+  
+  .terms {
+    font-size: 12px;
+    color: #888;
+  }
+  
+  .terms span {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  

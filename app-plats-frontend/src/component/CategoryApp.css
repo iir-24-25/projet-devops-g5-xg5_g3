@@ -1,0 +1,126 @@
+.app-container {
+    display: flex;
+  }
+  
+  .sidebar {
+    width: 250px;
+    background-color: #f4f4f4;
+    padding: 20px;
+  }
+  
+  
+  .app-title {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .nav-menu {
+    margin-top: 20px;
+  }
+  
+  .nav-item {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .nav-item.active {
+    background-color: #040404;
+    color: white;
+  }
+  
+  .main-content {
+    flex-grow: 1;
+    padding: 20px;
+    background-color: #fff;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .page-title {
+    font-size: 28px;
+  }
+  
+  .form-container {
+    margin-top: 20px;
+  }
+  
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group label {
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+  
+  .form-group input {
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .generate-btn {
+    grid-column: span 2;
+    background-color: #000000;
+    color: white;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .category-table-container {
+    margin-top: 40px;
+  }
+  
+  .category-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .category-table th,
+  .category-table td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: center;
+  }
+  
+  .category-table th {
+    background-color: #f4f4f4;
+  }
+  
+  .category-table tbody tr:nth-child(odd) {
+    background-color: #f9f9f9;
+  }
+  
+  .action-btn {
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .edit {
+    background-color: #379640;
+    color: white;
+    margin-right: 10px;
+  }
+  
+  .delete {
+    background-color: #dc3545;
+    color: white;
+  }
+  

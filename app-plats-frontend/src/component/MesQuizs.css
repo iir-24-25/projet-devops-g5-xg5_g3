@@ -1,0 +1,116 @@
+/* MesQuizs.css */
+.mesquizs-container {
+  padding: 20px;
+  
+  text-align: center;
+}
+
+.quiz-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  justify-items: center;
+}
+
+.quiz-card {
+  
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.card-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-content {
+  
+  
+  padding: 15px;
+}
+
+.card-content h3 {
+  margin-top: 0;
+}
+
+.card-content p {
+  margin-bottom: 5px;
+}
+.mesquizs-container {
+  padding: 20px;
+  width: 1000px;
+  margin: auto;
+}
+
+.header-right {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.logout-btn,
+.login-btn {
+  padding: 8px 16px;
+  background-color: #000000;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.login-btn {
+  background-color: #000000;
+}
+
+.logout-btn:hover,
+.login-btn:hover {
+  opacity: 0.9;
+}
+
+.no-login-message {
+  text-align: center;
+  font-size: 1.2em;
+  margin-top: 50px;
+}
+.mesquizs-container {
+  padding: 20px;
+  max-width: 800px;
+  margin: auto;
+}
+
+.results-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+  
+}
+
+.result-item {
+  background-color: #fff;
+  border-left: 5px solid #fa8202;
+  padding: 15px 20px;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease;
+}
+
+.result-item:hover {
+  transform: translateY(-2px);
+}
+
+.result-item h3 {
+  margin: 0 0 10px;
+  font-size: 1.1em;
+  color: #333;
+}
+
+.result-item p {
+  margin: 4px 0;
+  color: #555;
+  font-size: 0.95em;
+}
+
