@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import './Quiz.css';
@@ -16,36 +16,7 @@ function Quiz() {
   const [quizCompleted, setQuizCompleted] = useState(false);
   const [timeLeft, setTimeLeft] = useState(300); // 5 minutes
 
-  // Fonction pour normaliser les questions
-  const normalizeQuestions = (apiData) => {
-    console.log("Données reçues:", apiData);
-    
-    if (!apiData) return [];
-    
-    // Si l'API retourne directement un tableau de questions
-    if (Array.isArray(apiData)) {
-      return apiData.map((item, index) => ({
-        id: item.id || index,
-        text: item.question || item.texte || `Question ${index + 1}`,
-        options: normalizeOptions(item)
-      }));
-    }
-    
-    // Si les questions sont dans une propriété spécifique
-    if (apiData.questions && Array.isArray(apiData.questions)) {
-      return apiData.questions.map((item, index) => ({
-        id: item.id || index,
-        text: item.question || item.texte || `Question ${index + 1}`,
-        options: normalizeOptions(item)
-      }));
-    }
-    
-    return [];
-  };
-
-  // Fonction pour normaliser les options
-  const normalizeOptions = (question) => {
-    // Format 1: Options dans un tableau
+  const normalizeOptions = useCallback((question) => {
     if (question.options && Array.isArray(question.options)) {
       return question.options.map((opt, i) => ({
         id: opt.id || i,
@@ -53,8 +24,7 @@ function Quiz() {
         isCorrect: Boolean(opt.isCorrect || opt.correct || opt.estCorrecte)
       }));
     }
-    
-    // Format 2: Options comme propriétés séparées (option1, option2...)
+
     const options = [];
     for (let i = 1; i <= 4; i++) {
       const optionText = question[`option${i}`] || question[`reponse${i}`];
@@ -66,30 +36,49 @@ function Quiz() {
         });
       }
     }
-    
+
     return options.length > 0 ? options : [
       { id: 1, text: "Aucune option disponible", isCorrect: false }
     ];
-  };
+  }, []);
 
-  // Chargement des données
+  const normalizeQuestions = useCallback((apiData) => {
+    if (!apiData) return [];
+
+    if (Array.isArray(apiData)) {
+      return apiData.map((item, index) => ({
+        id: item.id || index,
+        text: item.question || item.texte || `Question ${index + 1}`,
+        options: normalizeOptions(item)
+      }));
+    }
+
+    if (apiData.questions && Array.isArray(apiData.questions)) {
+      return apiData.questions.map((item, index) => ({
+        id: item.id || index,
+        text: item.question || item.texte || `Question ${index + 1}`,
+        options: normalizeOptions(item)
+      }));
+    }
+
+    return [];
+  }, [normalizeOptions]);
+
   useEffect(() => {
     const fetchQuizData = async () => {
       try {
         setLoading(true);
-        
-        // 1. Récupérer les infos du quiz
+
         const quizResponse = await axios.get(`http://localhost:9090/api/quizzes/${id}`);
         setQuizInfo(quizResponse.data);
-        
-        // 2. Récupérer les questions spécifiques
+
         const questionsResponse = await axios.get(`http://localhost:9090/api/questions/quiz/${id}`);
         const normalizedQuestions = normalizeQuestions(questionsResponse.data);
-        
+
         if (normalizedQuestions.length === 0) {
           throw new Error("Aucune question valide trouvée");
         }
-        
+
         setQuestions(normalizedQuestions);
         setLoading(false);
       } catch (err) {
@@ -100,9 +89,8 @@ function Quiz() {
     };
 
     fetchQuizData();
-  }, [id]);
+  }, [id, normalizeQuestions]);
 
-  // Gestion du timer
   useEffect(() => {
     if (timeLeft > 0 && !quizCompleted && questions.length > 0) {
       const timer = setTimeout(() => setTimeLeft(timeLeft - 1), 1000);
@@ -119,7 +107,6 @@ function Quiz() {
   const handleNextQuestion = () => {
     if (!questions.length || selectedOption === null) return;
 
-    // Vérifier si la réponse est correcte
     const currentQuestion = questions[currentQuestionIndex];
     const isCorrect = currentQuestion.options.find(opt => opt.id === selectedOption)?.isCorrect;
 
@@ -127,7 +114,6 @@ function Quiz() {
       setScore(score + 1);
     }
 
-    // Passer à la question suivante ou terminer
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
       setSelectedOption(null);
@@ -197,7 +183,7 @@ function Quiz() {
 
       <div className="question-container">
         <h3>{currentQuestion.text}</h3>
-        
+
         <div className="options-container">
           {currentQuestion.options.map((option) => (
             <div

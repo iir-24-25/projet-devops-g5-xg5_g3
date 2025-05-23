@@ -22,17 +22,18 @@ export default function MonProfil() {
 
   // Charger l'utilisateur connecté
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((currentUser) => {
-      if (!currentUser) {
-        setUser(null);
-        navigate('/'); // Redirige vers login si non connecté
-      } else {
-        setUser(currentUser);
-      }
-    });
+  const unsubscribe = auth.onAuthStateChanged((currentUser) => {
+    if (!currentUser) {
+      setUser(null);
+      navigate('/'); // Redirige vers login si non connecté
+    } else {
+      setUser(currentUser);
+    }
+  });
 
-    return () => unsubscribe();
-  }, []);
+  return () => unsubscribe();
+}, [navigate]);  // <- ici on ajoute navigate
+
 
   const handleChangePassword = async () => {
     setError('');

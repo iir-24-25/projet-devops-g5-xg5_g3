@@ -15,9 +15,9 @@ function Dashboard() {
 
   const { pathname } = useLocation();
 
-  const isActive = (path) => {
-    return pathname === path;
-  };
+  // const isActive = (path) => {
+  //   return pathname === path;
+  // };
 
   const fetchData = async () => {
     try {

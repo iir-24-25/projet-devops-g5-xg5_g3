@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { FaEdit, FaTrash } from 'react-icons/fa';
+// import { FaEdit, FaTrash } from 'react-icons/fa';
 import './QuizApp.css'; // OU import './QuizCRUD.css' - choisissez un seul fichier CSS
 
 // Firebase
@@ -17,7 +17,7 @@ const QuizApp = () => {
   const [currentUser, setCurrentUser] = useState(null); // Utilisateur connecté
 
   // États principaux
-  const [quizzes, setQuizzes] = useState([]);
+  // const [quizzes, setQuizzes] = useState([]);
   const [categories, setCategories] = useState([]);
   const [questions, setQuestions] = useState([]);
   const [currentQuizId, setCurrentQuizId] = useState(null);
