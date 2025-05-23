@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { FaEdit, FaTrash } from 'react-icons/fa';
@@ -15,16 +14,9 @@ const API_URL = 'http://localhost:9090/api';
 
 const QuestionCRUD = () => {
   const navigate = useNavigate();
-=======
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import "./QuestionCRUD.css"; // CSS modernisé ici
-//CRUD
-function QuestionCRUD() {
->>>>>>> 9d32da03c71a6780db310f68d0ae28be7f8197f4
+
   const [questions, setQuestions] = useState([]);
   const [quizzes, setQuizzes] = useState([]);
-  const [form, setForm] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedQuiz, setSelectedQuiz] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
@@ -54,19 +46,18 @@ function QuestionCRUD() {
   const fetchQuestions = async () => {
     try {
       const res = await axios.get(`${API_URL}/questions`);
-      
-      let data = [];
 
+      let data = [];
       if (Array.isArray(res.data)) {
         data = res.data;
       } else if (res.data && Array.isArray(res.data.content)) {
         data = res.data.content;
       }
 
-      console.log("Données reçues:", data); // <= Debug
       setQuestions(data);
     } catch (error) {
       console.error("Erreur lors du chargement des questions :", error);
+      // Exemple de données fallback
       setQuestions([
         {
           id: 1,
@@ -164,48 +155,8 @@ function QuestionCRUD() {
             </div>
           </div>
 
-<<<<<<< HEAD
           <Link to="/categories" className="nav-item">Categorie</Link>
           <Link to="/settings" className="nav-item">Paramètres</Link>
-=======
-              <Button type="submit">{editId ? "Modifier" : "Enregistrer"}</Button>
-            </Form>
-          </Card>
-
-          <Card title="Liste des Questions">
-            <Table
-              headers={["Énoncé", "Explication", "Points", "Type", "Quiz", "Actions"]}
-              data={questions}
-              renderRow={(q) => (
-                <>
-                  <td>{q.enonce}</td>
-                  <td>{q.explication}</td>
-                  <td>{q.points}</td>
-                  <td>{q.type}</td>
-                  <td>{q.quiz?.nom || "—"}</td>
-                  <td>
-                    <Btn onClick={() => handleEdit(q)}>Modifier</Btn>
-                    <Btn variant="danger" onClick={() => handleDelete(q.id)}>Supprimer</Btn>
-                  </td>
-                </>
-              )}
-            />
-          </Card>
-        </section>
-      </main>
-    </div>
-  );
-}
-
-// --- Composants réutilisables ----
-const Sidebar = () => (
-  <aside className="sidebar">
-    <h2 className="app-title">Quiz App</h2>
-    <nav className="menu">
-      {["Dashboard", "Quiz", "Questions", "Users", "Categorie", "Settings"].map((item) => (
-        <div key={item} className={`menu-item ${item === "Questions" ? "active" : ""}`}>
-          {item}
->>>>>>> 9d32da03c71a6780db310f68d0ae28be7f8197f4
         </div>
       </div>
 
@@ -244,12 +195,11 @@ const Sidebar = () => (
             className="category-select"
           >
             <option value="">Tous les quiz</option>
-            {Array.isArray(quizzes) &&
-              quizzes.map((quiz) => (
-                <option key={quiz.id} value={quiz.id}>
-                  {quiz.nom}
-                </option>
-              ))}
+            {quizzes.map((quiz) => (
+              <option key={quiz.id} value={quiz.id}>
+                {quiz.nom}
+              </option>
+            ))}
           </select>
         </div>
 
