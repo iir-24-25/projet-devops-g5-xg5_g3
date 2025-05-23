@@ -62,4 +62,4 @@ jobs:
           docker compose -f docker-compose.prod.yml up -d
 
       - name: Print deployment status
-        run: docker pss
+        run: docker ps
