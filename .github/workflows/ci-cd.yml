@@ -28,10 +28,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up JDK 17
+      - name: Set up JDK 21
         uses: actions/setup-java@v3
         with:
-          java-version: '17'
+          java-version: '21'
           distribution: 'temurin'
 
       - name: Build backend
@@ -62,4 +62,4 @@ jobs:
           docker compose -f docker-compose.prod.yml up -d
 
       - name: Print deployment status
-        run: docker ps
+        run: docker pss
