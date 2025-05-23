@@ -1,24 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-<<<<<<< HEAD
-<<<<<<< HEAD
-import './QuizCRUD.css'; // Ton CSS existant
-
-// Firebase Admin
+import './QuizApp.css';
+// ou
+import './QuizCRUD.css'; // selon ce que tu veux vraiment
+// puis les autres imports nécessaires
 import { onAuthStateChanged, signOut } from 'firebase/auth';
-import { adminAuth } from '../firebaseAdmin'; // Ajuste selon ta structure
-
-// React Router
+import { adminAuth } from '../firebaseAdmin';
 import { Link, useNavigate } from 'react-router-dom';
 
-=======
-import './QuizApp.css';
-//QUIZ
->>>>>>> 9d32da03c71a6780db310f68d0ae28be7f8197f4
-=======
-import './QuizApp.css';
-//QUIZ
->>>>>>> 9d32da03c71a6780db310f68d0ae28be7f8197f4
+
 const API_URL = 'http://localhost:9090/api';
 
 const QuizApp = () => {
